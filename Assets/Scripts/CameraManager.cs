@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace HyperCasual.Runner
+namespace Assets.Scripts
 {
     /// <summary>
     /// A class used to manage camera movement
@@ -180,4 +178,5 @@ namespace HyperCasual.Runner
         }
     }
 }
+
 
