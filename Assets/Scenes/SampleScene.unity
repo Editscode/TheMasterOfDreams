@@ -481,7 +481,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b618cadf04050c74e92739e67dcbab68, type: 2}
+  - {fileID: 2100000, guid: 160c3375c48c7ba4b8a1288367afb657, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4806,7 +4806,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b618cadf04050c74e92739e67dcbab68, type: 2}
+  - {fileID: 2100000, guid: 160c3375c48c7ba4b8a1288367afb657, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5061,7 +5061,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b618cadf04050c74e92739e67dcbab68, type: 2}
+  - {fileID: 2100000, guid: 160c3375c48c7ba4b8a1288367afb657, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14783,7 +14783,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b618cadf04050c74e92739e67dcbab68, type: 2}
+  - {fileID: 2100000, guid: 160c3375c48c7ba4b8a1288367afb657, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21884,17 +21884,17 @@ PrefabInstance:
     - target: {fileID: 3877757982659199829, guid: c07f1fd7f4c8acd47a07f9cbb1f0929b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3877757982659199829, guid: c07f1fd7f4c8acd47a07f9cbb1f0929b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3877757982659199829, guid: c07f1fd7f4c8acd47a07f9cbb1f0929b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3877757982659199829, guid: c07f1fd7f4c8acd47a07f9cbb1f0929b,
         type: 3}
@@ -21925,6 +21925,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4262664090116189296, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262664090116189296, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
+        type: 3}
+      propertyPath: m_Offset.z
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 4262664090116189296, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: playerController
@@ -21958,22 +21968,22 @@ PrefabInstance:
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9122401
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.40965602
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
@@ -21998,6 +22008,11 @@ PrefabInstance:
     - target: {fileID: 4262664090116189300, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262664090116189303, guid: 12a119e208a6c6d41b1a0605a6e0d75b,
+        type: 3}
+      propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
