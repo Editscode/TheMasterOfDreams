@@ -27,7 +27,7 @@ public class ThinkingPlaceable : Placeable
     [HideInInspector] public ThinkingPlaceable target;
     [HideInInspector] public HealthBar healthBar;
 
-    [HideInInspector] public float hitPoints;
+    public float hitPoints;
     [HideInInspector] public float attackRange;
     [HideInInspector] public float attackRatio;
     [HideInInspector] public float lastBlowTime = -1000f;
