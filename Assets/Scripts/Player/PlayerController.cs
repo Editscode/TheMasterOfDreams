@@ -1,15 +1,15 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts
 {
     public class PlayerController : ThinkingPlaceable
     {
-        [SerializeField] private Animator animator;
+        private Animator animator;
         [SerializeField] private float turnSpeed = 20f;
         [SerializeField] private float speed = 6f;
         [SerializeField] private float range = 15f;
-        public GameObject TransformTarget;
+        [SerializeField] private float playerDamage = 1f;
+        [SerializeField] private float playerAttackRatio = 0.8f;
 
         private Rigidbody _rigidbody;
         private Vector3 _movement;
@@ -19,12 +19,11 @@ namespace Assets.Scripts
         {
             _rigidbody = GetComponent<Rigidbody>();
             pType = Placeable.PlaceableType.Unit;
-
-            //find references to components
             animator = GetComponentInChildren<Animator>();
-            //navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
+
             audioSource = GetComponent<AudioSource>();
-            damage = 1;
+            damage = playerDamage;
+            attackRatio = playerAttackRatio;
         }
 
         /// <summary>
@@ -61,52 +60,45 @@ namespace Assets.Scripts
             foreach (var enemy in enemies)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < shortestDistance)
+                if (distanceToEnemy < shortestDistance && enemy.GetComponent<ThinkingPlaceable>().state != States.Dead)
                 {
                     shortestDistance = distanceToEnemy;
                     nearestEnemy = enemy;
                 }
             }
-
             if (nearestEnemy != null && shortestDistance <= range)
             {
                 target = nearestEnemy.GetComponent<ThinkingPlaceable>();
             }
-        }
-
-
-        private void Turning()
-        {
-            if (state != States.Seeking)
-            {
-                Vector3 targetDirection = target.transform.position - transform.position;
-
-                // The step size is equal to speed times frame time.
-                float singleStep = speed * Time.deltaTime;
-
-                // Rotate the forward vector towards the target direction by one step
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, turnSpeed * Time.deltaTime, 0.0f);
-
-                // Draw a ray pointing at our target in
-                Debug.DrawRay(transform.position, newDirection, Color.red);
-
-                // Calculate a rotation a step closer to the target and applies rotation to this object
-                transform.rotation = Quaternion.LookRotation(newDirection);
-            }
             else
             {
-                Vector3 desiredForward = Vector3.RotateTowards(transform.forward, _movement, turnSpeed * Time.deltaTime, 0f);
-                _rotation = Quaternion.LookRotation(desiredForward);
-                _rigidbody.MoveRotation(_rotation);
+                target = null;
             }
+        }
 
+        //Starts the attack animation, and is repeated according to the Unit's attackRatio
+        public override void DealBlow()
+        {
+            base.DealBlow();
+
+            animator.SetTrigger("Attack");
+            transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
+        }
+        private void Turning()
+        {
+            Vector3 desiredForward = Vector3.RotateTowards(transform.forward, _movement, turnSpeed * Time.deltaTime, 0f);
+            _rotation = Quaternion.LookRotation(desiredForward);
+            _rigidbody.MoveRotation(_rotation);
         }
         public override void StartAttack()
         {
+            if (target == null) return;
+            if (target.state == States.Dead){ return;}
 
-            float timeBetweenBullets = 0.15f;
+            transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
+
             float angleBetweenBullets = 10f;
-            int numberOfBullets = 1;
+            int numberOfBullets = 3;
             base.StartAttack();
             if (Time.time >= lastBlowTime + attackRatio)
             {
@@ -125,7 +117,7 @@ namespace Assets.Scripts
                 }
 
             }
-           
+
         }
         void Move(float horizontal, float vertical)
         {
@@ -148,7 +140,7 @@ namespace Assets.Scripts
                 state = States.Idle;
 
             }
-            animator.SetBool("IsWalking", isWalking);
+            animator.SetBool("IsMoving", isWalking);
         }
     }
 }

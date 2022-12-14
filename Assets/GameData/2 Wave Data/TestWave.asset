@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee367a1ea9201fa47814d0dddf22d076, type: 3}
+  m_Name: TestWave
+  m_EditorClassIdentifier: 
+  placeablesData:
+  - {fileID: 11400000, guid: 3f3ef67ef338620498a995915b928e9e, type: 2}
+  - {fileID: 11400000, guid: b6ea752000c5c154cb1198b070756d3f, type: 2}
+  - {fileID: 11400000, guid: 3f3ef67ef338620498a995915b928e9e, type: 2}
+  relativeOffsets:
+  - {x: -2, y: 0, z: 15.5}
+  - {x: 0, y: 0, z: 15.5}
+  - {x: 2, y: 0, z: 15.5}

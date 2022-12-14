@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d189193dc1438c43af6dfb86d6cb0ca, type: 3}
+  m_Name: Warrior
+  m_EditorClassIdentifier: 
+  pType: 0
+  associatedPrefab: {fileID: 5701704621631426976, guid: 36e93c435d1648a4c86d516057a9cbe2,
+    type: 3}
+  alternatePrefab: {fileID: 5701704621631426976, guid: 36e93c435d1648a4c86d516057a9cbe2,
+    type: 3}
+  attackType: 0
+  targetType: 1
+  attackRatio: 2.5
+  damagePerAttack: 4
+  attackRange: 2.5
+  hitPoints: 20
+  attackClip: {fileID: 0}
+  dieClip: {fileID: 0}
+  speed: 1.5
+  lifeTime: 5
+  damagePerSecond: 1
