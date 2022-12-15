@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3520186631656312373}
   - component: {fileID: 2515162528634775386}
   - component: {fileID: 1859484641583739284}
+  - component: {fileID: 8864124212746515055}
   m_Layer: 0
   m_Name: Zombunny
   m_TagString: Enemy
@@ -203,6 +204,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &8864124212746515055
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358227111793427701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3358227111793427703
 GameObject:
   m_ObjectHideFlags: 0

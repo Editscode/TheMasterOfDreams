@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Placeables;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -11,30 +12,47 @@ namespace Assets.Scripts
         private Vector3 offset = new Vector3(0f, 1.2f, 0f);
         private Vector3 initialPosition;
 
-
-        private void Update()
+        private void Start()
         {
-            if (progress >= 1f)
-            {
-                if (target != null)
-                {
-                    if (target.state !=
-                        ThinkingPlaceable.States.Dead) //target might be dead already as this projectile is flying
-                    {
-                        // Debug.Log("My target " + target.name + " is dead", gameObject);
-                        float newHP = target.SufferDamage(damage);
-                        //Debug.Log("My target " + target.name + " is newHP: " + damage.ToString(), gameObject);
-                        //target.healthBar.SetHealth(newHP);
-                    }
-                }
+            GetComponent<Rigidbody>().velocity = transform.forward * 20f;
+        }
 
-                Destroy(gameObject);
-            }
-            else
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.transform.CompareTag("Environment") || collision.transform.CompareTag("Enemy"))
             {
-                Move();
+                if (collision.transform.CompareTag("Enemy"))
+                {
+                    float newHP = collision.transform.GetComponent<Unit>().SufferDamage(damage);
+                }
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                Destroy(gameObject, 0.2f);
             }
         }
+
+        //private void Update()
+        //{
+        //    if (progress >= 1f)
+        //    {
+        //        if (target != null)
+        //        {
+        //            if (target.state !=
+        //                ThinkingPlaceable.States.Dead) //target might be dead already as this projectile is flying
+        //            {
+        //                // Debug.Log("My target " + target.name + " is dead", gameObject);
+        //                float newHP = target.SufferDamage(damage);
+        //                //Debug.Log("My target " + target.name + " is newHP: " + damage.ToString(), gameObject);
+        //                //target.healthBar.SetHealth(newHP);
+        //            }
+        //        }
+
+        //        Destroy(gameObject);
+        //    }
+        //    else
+        //    {
+        //        Move();
+        //    }
+        //}
 
         private void Awake()
         {
