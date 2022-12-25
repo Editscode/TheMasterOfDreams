@@ -1,11 +1,13 @@
 ﻿using Assets.Scripts.Placeables;
 using UnityEngine;
+using static Placeable;
 
 namespace Assets.Scripts
 {
     public class Projectile : MonoBehaviour
     {
         [HideInInspector] public ThinkingPlaceable target;
+        [HideInInspector] public Faction faction;
         [HideInInspector] public float damage;
         private float speed = 3f;
         private float progress = 0f;
@@ -14,7 +16,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            GetComponent<Rigidbody>().velocity = transform.forward * 20f;
+            GetComponent<Rigidbody>().velocity = transform.forward * 10f;
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -23,13 +25,19 @@ namespace Assets.Scripts
             {
                 if (collision.transform.CompareTag("Enemy"))
                 {
-                    float newHP = collision.transform.GetComponent<Unit>().SufferDamage(damage);
+                    if (collision.transform.GetComponent<ThinkingPlaceable>().faction != faction)
+                    {
+                        float newHP = collision.transform.GetComponent<ThinkingPlaceable>().SufferDamage(damage);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Destroy(gameObject, 0.2f);
             }
         }
-
         //private void Update()
         //{
         //    if (progress >= 1f)

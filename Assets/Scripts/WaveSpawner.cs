@@ -50,7 +50,7 @@ namespace Assets.Scripts
             Vector3[] relativeOffsets = WaveDatas[waveIndex].relativeOffsets;
 
             if (OnCardUsed != null)
-                OnCardUsed(WaveDatas[waveIndex].placeablesData, WaveDatas[waveIndex].relativeOffsets, Placeable.Faction.Player); //GameManager picks this up to spawn the actual Placeable
+                OnCardUsed(WaveDatas[waveIndex].placeablesData, WaveDatas[waveIndex].relativeOffsets, Placeable.Faction.Opponent); //GameManager picks this up to spawn the actual Placeable
             yield return new WaitForSeconds(0);
             waveIndex++;
         }

@@ -50,6 +50,7 @@ public class CPUUnit : MonoBehaviour
                     if (p.IsTargetInRange())
                     {
                         p.StartAttack();
+
                     }
                     else
                     {
@@ -97,15 +98,29 @@ public class CPUUnit : MonoBehaviour
         var uScript = go.GetComponent<Unit>();
         uScript.Activate(Placeable.Faction.Opponent, pDataRef); //enables NavMeshAgent
         uScript.OnDealDamage += OnPlaceableDealtDamage;
+        uScript.OnProjectileFired += OnProjectileFired;
         allThinkingPlaceables.Add(uScript);
         go.GetComponent<Placeable>().OnDie += OnPlaceableDead;
     }
+
+    private void OnProjectileFired(ThinkingPlaceable p)
+    {
+        Vector3 adjTargetPos = p.target.transform.position;
+        adjTargetPos.y = 1.5f;
+        Quaternion rot = Quaternion.LookRotation(adjTargetPos - p.projectileSpawnPoint.position);
+
+        Projectile prj = Instantiate<GameObject>(p.projectilePrefab, p.projectileSpawnPoint.position, rot).GetComponent<Projectile>();
+        prj.target = p.target;
+        prj.damage = p.damage;
+        prj.faction = p.faction;
+    }
+
     private void OnPlaceableDealtDamage(ThinkingPlaceable p)
     {
         if (p.target.state == ThinkingPlaceable.States.Dead) return;
 
         var newHealth = p.target.SufferDamage(p.damage);
-        p.target.healthBar.SetHealth(newHealth);
+        //p.target.healthBar.SetHealth(newHealth);
     }
     private void OnPlaceableDead(Placeable p)
     {

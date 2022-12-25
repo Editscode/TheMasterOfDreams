@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: TestWave
   m_EditorClassIdentifier: 
   placeablesData:
-  - {fileID: 11400000, guid: 3f3ef67ef338620498a995915b928e9e, type: 2}
-  - {fileID: 11400000, guid: b6ea752000c5c154cb1198b070756d3f, type: 2}
-  - {fileID: 11400000, guid: 3f3ef67ef338620498a995915b928e9e, type: 2}
+  - {fileID: 11400000, guid: aa7798b7ff9df164994342972947de4e, type: 2}
   relativeOffsets:
-  - {x: -2, y: 0, z: 15.5}
-  - {x: 0, y: 0, z: 15.5}
-  - {x: 2, y: 0, z: 15.5}
+  - {x: 0, y: 0, z: 16.5}

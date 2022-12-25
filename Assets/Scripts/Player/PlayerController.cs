@@ -20,7 +20,7 @@ namespace Assets.Scripts
             _rigidbody = GetComponent<Rigidbody>();
             pType = Placeable.PlaceableType.Unit;
             animator = GetComponentInChildren<Animator>();
-
+            faction = Faction.Player;
             audioSource = GetComponent<AudioSource>();
             damage = playerDamage;
             attackRatio = playerAttackRatio;
@@ -40,6 +40,8 @@ namespace Assets.Scripts
             Gizmos.DrawWireSphere(transform.position, range);
 
         }
+
+
         void FixedUpdate()
         {
             UpdateTarget();
@@ -62,8 +64,11 @@ namespace Assets.Scripts
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < shortestDistance && enemy.GetComponent<ThinkingPlaceable>().state != States.Dead)
                 {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = enemy;
+                    if (enemy.GetComponent<ThinkingPlaceable>().faction == Faction.Opponent)
+                    {
+                        shortestDistance = distanceToEnemy;
+                        nearestEnemy = enemy;
+                    }
                 }
             }
             if (nearestEnemy != null && shortestDistance <= range)
@@ -93,13 +98,14 @@ namespace Assets.Scripts
         public override void StartAttack()
         {
             if (target == null) return;
-            if (target.state == States.Dead){ return;}
+            if (target.state == States.Dead) { return; }
 
             transform.forward = (target.transform.position - transform.position).normalized; //turn towards the target
 
+
+            base.StartAttack();
             float angleBetweenBullets = 10f;
             int numberOfBullets = 3;
-            base.StartAttack();
             if (Time.time >= lastBlowTime + attackRatio)
             {
                 DealBlow();
@@ -110,6 +116,7 @@ namespace Assets.Scripts
                     GameObject instantiatedBullet = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, rot) as GameObject;
                     instantiatedBullet.GetComponent<Projectile>().target = target;
                     instantiatedBullet.GetComponent<Projectile>().damage = damage;
+                    instantiatedBullet.GetComponent<Projectile>().faction = faction;
 
                     //instantiatedBullet.GetComponent<Bullet>().piercing = piercing;
                     //instantiatedBullet.GetComponent<Bullet>().bounce = bounce;
